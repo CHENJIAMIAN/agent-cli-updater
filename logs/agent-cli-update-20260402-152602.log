@@ -1,0 +1,94 @@
+﻿**********************
+Windows PowerShell 脚本开始
+开始时间: 20260402152602
+用户名: DESKTOP-NDFD4H3\Administrator
+RunAs 用户: DESKTOP-NDFD4H3\Administrator
+配置名称: 
+计算机: DESKTOP-NDFD4H3 (Microsoft Windows NT 10.0.22631.0)
+主机应用程序: powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File D:\Desktop\agent-cli-updater\update-agent-clis.ps1
+进程 ID: 38708
+PSVersion: 5.1.22621.6133
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.6133
+BuildVersion: 10.0.22621.6133
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+=== Agent CLI Auto Update ===
+Started at: 2026-04-02 15:26:02
+Log file: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260402-152602.log
+pnpm global bin: D:/pnpm-global-bin-dir
+
+=== Checking gemini ===
+gemini not found on PATH. Skipping.
+
+=== Checking claude ===
+Resolved path: C:\Users\Administrator\.local\bin\claude.exe
+Version before: 2.1.90 (Claude Code)
+Inferred package name: ")}async function DmK(H,$,q){try{return await BNH.writeFile(H,$,{encoding:"utf8",flag:"wx",mode:q}),!0}catch(K){if(l$(K)==="EEXIST")return!1;throw K}}async function fv4(){try{let H=Ax8();await Y8().mkdir(H),await DmK(gNH.join(H,"package.json"),BH({name:"claude-local",version:"0.0.1",private:!0},null,2));let $=gNH.join(H,"claude");if(await DmK($,`#!
+Update strategy: self-update
+Running: claude update
+--- stdout ---
+Current version: 2.1.90
+Checking for updates to latest version...
+--- stderr ---
+============================================================
+Bun v1.3.11 (0d72d5a9) Windows x64 (baseline)
+Windows v.win11_ge
+CPU: sse42 avx avx2
+Args: "C:\Users\Administrator\.local\bin\claude.exe" "update"
+Features: Bun.stderr(2) Bun.stdin(2) Bun.stdout(2) fetch(4) http_client_proxy(4) jsc spawn(8) standalone_executable yaml_parse 
+Builtins: "bun:main" "node:assert" "node:async_hooks" "node:buffer" "node:child_process" "node:crypto" "node:dns" "node:events" "node:fs" "node:fs/promises" "node:http" "node:https" "node:module" "node:net" "node:os" "node:path" "node:path/posix" "node:path/win32" "node:perf_hooks" "node:process" "node:stream" "node:stream/consumers" "node:timers/promises" "node:tls" "node:tty" "node:url" "node:util" "node:zlib" "undici" "ws" "node:http2" 
+Elapsed: 21701ms | User: 406ms | Sys: 234ms
+RSS: 1.79GB | Peak: 1.80GB | Commit: 6.22GB | Faults: 465615 | Machine: 16.42GB
+
+oh no: Bun has run out of memory.
+
+To send a redacted crash report to Bun's team,
+please file a GitHub issue using the link below:
+
+ https://bun.report/1.3.11/e_10d72d5amgggEugogDoplpmB0otrT+iy6b+qmvhB4/hrdi4q8fwykmwBijwj3Bq1q/2B6vo/2Buwv1d40uqYCYKERNEL32.DLL65yECSntdll.dllw33WA9
+
+=== Checking codex ===
+Resolved path: C:\Users\Administrator\AppData\Roaming\npm\codex.ps1
+Version before: codex-cli 0.118.0
+Update strategy: npm
+Running: D:\Program Files\nodejs\npm.ps1 install -g @openai/codex@latest
+--- stdout ---
+
+changed 2 packages in 6s
+
+=== Checking kilo ===
+Resolved path: C:\Users\Administrator\AppData\Roaming\npm\kilo.ps1
+Version before: 7.1.17
+Inferred package name: @kilocode/cli
+Stopped running kilo processes: 18360, 11640
+Update strategy: npm
+Running: D:\Program Files\nodejs\npm.ps1 install -g @kilocode/cli@latest
+--- stdout ---
+
+changed 3 packages in 9s
+
+=== Checking opencode ===
+opencode not found on PATH. Skipping.
+
+=== Summary ===
+
+Cli      VersionBefore        VersionAfter         Strategy    Status                ExitCode Notes
+---      -------------        ------------         --------    ------                -------- -----
+gemini                                             missing     skipped                        Command not found on PATH
+claude   2.1.90 (Claude Code) 2.1.90 (Claude Code) self-update failed                         Duration 21.9s
+codex    codex-cli 0.118.0    codex-cli 0.118.0    npm         updated-with-warnings          Duration 6.3s
+kilo     7.1.17               7.1.17               npm         updated-with-warnings          Duration 10.1s
+opencode                                           missing     skipped                        Command not found on PATH
+
+
+
+Log saved to: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260402-152602.log
+**********************
+Windows PowerShell 脚本结束
+结束时间: 20260402152658
+**********************

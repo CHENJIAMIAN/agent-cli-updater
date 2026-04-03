@@ -1,0 +1,80 @@
+﻿**********************
+Windows PowerShell 脚本开始
+开始时间: 20260328032602
+用户名: DESKTOP-NDFD4H3\Administrator
+RunAs 用户: DESKTOP-NDFD4H3\Administrator
+配置名称: 
+计算机: DESKTOP-NDFD4H3 (Microsoft Windows NT 10.0.22631.0)
+主机应用程序: powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File D:\Desktop\agent-cli-updater\update-agent-clis.ps1
+进程 ID: 30292
+PSVersion: 5.1.22621.6133
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.6133
+BuildVersion: 10.0.22621.6133
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+=== Agent CLI Auto Update ===
+Started at: 2026-03-28 03:26:03
+Log file: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260328-032602.log
+pnpm global bin: D:/pnpm-global-bin-dir
+
+=== Checking gemini ===
+gemini not found on PATH. Skipping.
+
+=== Checking claude ===
+Resolved path: C:\Users\Administrator\.local\bin\claude.exe
+Version before: 2.1.85 (Claude Code)
+Inferred package name: ")}async function ElK(H,$,q){try{return await AEH.writeFile(H,$,{encoding:"utf8",flag:"wx",mode:q}),!0}catch(K){if(z$(K)==="EEXIST")return!1;throw K}}async function QRf(){try{let H=Kp8();await Y8().mkdir(H),await ElK(YEH.join(H,"package.json"),mH({name:"claude-local",version:"0.0.1",private:!0},null,2));let $=YEH.join(H,"claude");if(await ElK($,`#!
+Update strategy: self-update
+Running: claude update
+--- stdout ---
+Current version: 2.1.85
+Checking for updates to latest version...
+--- stderr ---
+Error: Failed to install native update
+Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+Try running "claude doctor" for diagnostics
+
+=== Checking codex ===
+Resolved path: C:\Users\Administrator\AppData\Roaming\npm\codex.ps1
+Version before: codex-cli 0.117.0
+PS>TerminatingError(Stop-Process):“已停止该运行的命令，因为首选项变量“ErrorActionPreference”或通用参数设置为 Stop: 找不到进程标识符为 29052 的进程。”
+PS>TerminatingError(Stop-Process):“已停止该运行的命令，因为首选项变量“ErrorActionPreference”或通用参数设置为 Stop: 找不到进程标识符为 14368 的进程。”
+>> TerminatingError(Stop-Process):“已停止该运行的命令，因为首选项变量“ErrorActionPreference”或通用参数设置为 Stop: 找不到进程标识符为 29932 的进程。”
+>> TerminatingError(Stop-Process):“已停止该运行的命令，因为首选项变量“ErrorActionPreference”或通用参数设置为 Stop: 找不到进程标识符为 23612 的进程。”
+>> TerminatingError(Stop-Process):“已停止该运行的命令，因为首选项变量“ErrorActionPreference”或通用参数设置为 Stop: 找不到进程标识符为 13896 的进程。”
+Stopped running codex processes: 3776, 20416
+Failed to stop some codex processes: 29052, 14368, 29932, 23612, 13896
+Update strategy: npm
+Running: D:\Program Files\nodejs\npm.ps1 install -g @openai/codex@latest
+--- stdout ---
+
+changed 2 packages in 19s
+
+=== Checking kilo ===
+kilo not found on PATH. Skipping.
+
+=== Checking opencode ===
+opencode not found on PATH. Skipping.
+
+=== Summary ===
+
+Cli      VersionBefore        VersionAfter         Strategy    Status                ExitCode Notes
+---      -------------        ------------         --------    ------                -------- -----
+gemini                                             missing     skipped                        Command not found on PATH
+claude   2.1.85 (Claude Code) 2.1.85 (Claude Code) self-update failed                         Duration 6.6s
+codex    codex-cli 0.117.0    codex-cli 0.117.0    npm         updated-with-warnings          Duration 19.6s
+kilo                                               missing     skipped                        Command not found on PATH
+opencode                                           missing     skipped                        Command not found on PATH
+
+
+
+Log saved to: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260328-032602.log
+**********************
+Windows PowerShell 脚本结束
+结束时间: 20260328032654
+**********************

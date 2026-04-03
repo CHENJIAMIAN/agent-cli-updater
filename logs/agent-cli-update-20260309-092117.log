@@ -1,0 +1,60 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260309092117
+Username: DESKTOP-NDFD4H3\Administrator
+RunAs User: DESKTOP-NDFD4H3\Administrator
+Configuration Name: 
+Machine: DESKTOP-NDFD4H3 (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File D:\Desktop\agent-cli-updater\update-agent-clis.ps1
+Process ID: 28804
+PSVersion: 5.1.22621.6133
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.6133
+BuildVersion: 10.0.22621.6133
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+
+=== Agent CLI Auto Update ===
+Started at: 2026-03-09 09:21:17
+Log file: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260309-092117.log
+pnpm global bin: <not detected>
+
+=== Checking gemini ===
+gemini not found on PATH. Skipping.
+
+=== Checking claude ===
+claude not found on PATH. Skipping.
+
+=== Checking codex ===
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+>> TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+>> TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+>> TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Resolved path: C:\Users\Administrator\AppData\Roaming\npm\codex.ps1
+Update strategy: npm
+Running: D:\Program Files\nodejs\npm.ps1 install -g @openai/codex@latest
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+>> TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At D:\Desktop\agent-cli-updater\update-agent-clis.ps1:30 char:17
++ ...     $proc = Start-Process -FilePath $FilePath -ArgumentList $Argument ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+**********************
+Windows PowerShell transcript end
+End time: 20260309092117
+**********************

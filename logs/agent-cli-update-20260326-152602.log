@@ -1,0 +1,62 @@
+﻿**********************
+Windows PowerShell 脚本开始
+开始时间: 20260326152602
+用户名: DESKTOP-NDFD4H3\Administrator
+RunAs 用户: DESKTOP-NDFD4H3\Administrator
+配置名称: 
+计算机: DESKTOP-NDFD4H3 (Microsoft Windows NT 10.0.22631.0)
+主机应用程序: powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File D:\Desktop\agent-cli-updater\update-agent-clis.ps1
+进程 ID: 53744
+PSVersion: 5.1.22621.6133
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.6133
+BuildVersion: 10.0.22621.6133
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+=== Agent CLI Auto Update ===
+Started at: 2026-03-26 15:26:03
+Log file: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260326-152602.log
+pnpm global bin: D:/pnpm-global-bin-dir
+
+=== Checking gemini ===
+gemini not found on PATH. Skipping.
+
+=== Checking claude ===
+claude not found on PATH. Skipping.
+
+=== Checking codex ===
+Resolved path: C:\Users\Administrator\AppData\Roaming\npm\codex.ps1
+Version before: codex-cli 0.116.0
+Update strategy: npm
+Running: D:\Program Files\nodejs\npm.ps1 install -g @openai/codex@latest
+--- stdout ---
+
+changed 2 packages in 3s
+
+=== Checking kilo ===
+kilo not found on PATH. Skipping.
+
+=== Checking opencode ===
+opencode not found on PATH. Skipping.
+
+=== Summary ===
+
+Cli      VersionBefore     VersionAfter      Strategy Status                ExitCode Notes
+---      -------------     ------------      -------- ------                -------- -----
+gemini                                       missing  skipped                        Command not found on PATH
+claude                                       missing  skipped                        Command not found on PATH
+codex    codex-cli 0.116.0 codex-cli 0.116.0 npm      updated-with-warnings          Duration 3.2s
+kilo                                         missing  skipped                        Command not found on PATH
+opencode                                     missing  skipped                        Command not found on PATH
+
+
+
+Log saved to: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260326-152602.log
+**********************
+Windows PowerShell 脚本结束
+结束时间: 20260326152611
+**********************

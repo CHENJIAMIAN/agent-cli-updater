@@ -1,0 +1,65 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260318142205
+Username: DESKTOP-NDFD4H3\Administrator
+RunAs User: DESKTOP-NDFD4H3\Administrator
+Configuration Name: 
+Machine: DESKTOP-NDFD4H3 (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File D:\Desktop\agent-cli-updater\update-agent-clis.ps1
+Process ID: 11732
+PSVersion: 5.1.22621.6133
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.6133
+BuildVersion: 10.0.22621.6133
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+=== Agent CLI Auto Update ===
+Started at: 2026-03-18 14:22:06
+Log file: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260318-142205.log
+pnpm global bin: D:/pnpm-global-bin-dir
+
+=== Checking gemini ===
+gemini not found on PATH. Skipping.
+
+=== Checking claude ===
+claude not found on PATH. Skipping.
+
+=== Checking codex ===
+Resolved path: C:\Users\Administrator\AppData\Roaming\npm\codex.ps1
+Version before: codex-cli 0.115.0
+PS>TerminatingError(Stop-Process): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Cannot find a process with the process identifier 41936."
+Stopped running codex processes: 30256
+Failed to stop some codex processes: 41936
+Update strategy: npm
+Running: D:\Program Files\nodejs\npm.ps1 install -g @openai/codex@latest
+--- stdout ---
+
+changed 2 packages in 19s
+
+=== Checking kilo ===
+kilo not found on PATH. Skipping.
+
+=== Checking opencode ===
+opencode not found on PATH. Skipping.
+
+=== Summary ===
+
+Cli      VersionBefore     VersionAfter      Strategy Status                ExitCode Notes
+---      -------------     ------------      -------- ------                -------- -----
+gemini                                       missing  skipped                        Command not found on PATH
+claude                                       missing  skipped                        Command not found on PATH
+codex    codex-cli 0.115.0 codex-cli 0.115.0 npm      updated-with-warnings          Duration 19.1s
+kilo                                         missing  skipped                        Command not found on PATH
+opencode                                     missing  skipped                        Command not found on PATH
+
+
+
+Log saved to: D:\Desktop\agent-cli-updater\logs\agent-cli-update-20260318-142205.log
+**********************
+Windows PowerShell transcript end
+End time: 20260318142227
+**********************
