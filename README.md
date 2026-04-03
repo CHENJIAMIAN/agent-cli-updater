@@ -15,3 +15,11 @@
 ```cmd
 run-update-agent-clis.cmd
 ```
+
+## 首次使用
+
+首次使用需要注册计划任务，实现定时自动更新（每6小时）：
+
+```powershell
+.\register-agent-cli-updater-task.ps1
+```
