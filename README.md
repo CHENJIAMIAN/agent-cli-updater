@@ -1,3 +1,12 @@
+[English](./README.en.md)
+
+<!-- codex-github-rules:bilingual-summary -->
+> **中文简介**：Windows 上的代理 CLI 工具更新器
+>
+> **English summary**: A simple updater for agent CLI tools on Windows
+
+---
+
 # Agent CLI Updater
 
 在 Windows 上更新 Agent CLI 工具的简单工具。
