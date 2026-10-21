@@ -9,7 +9,7 @@
 
 # Agent CLI Updater
 
-在 Windows 上更新 Agent CLI 工具的简单工具。
+Windows 上用于更新 Agent CLI 工具的简单脚本。
 
 ## 用法
 
@@ -27,7 +27,7 @@ run-update-agent-clis.cmd
 
 ## 首次使用
 
-首次使用需要注册计划任务，实现定时自动更新（每6小时）：
+首次使用需要注册计划任务，实现每天凌晨 2 点自动更新：
 
 ```powershell
 .\register-agent-cli-updater-task.ps1

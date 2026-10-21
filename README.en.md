@@ -14,7 +14,7 @@ Run the supplied PowerShell script:
 
 ## First Run
 
-Register the scheduled task to update tools automatically every six hours:
+Register the scheduled task to update tools automatically every day at 02:00:
 
 ~~~powershell
 .\register-agent-cli-updater-task.ps1
