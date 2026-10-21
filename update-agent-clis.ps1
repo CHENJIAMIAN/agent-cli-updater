@@ -127,7 +127,60 @@ function Get-PackageManagerForCommand {
         [string]$PnpmGlobalBin
     )
 
-    $normalizedPath = [System.IO.Path]::GetFullPath($CommandPath).ToLowerInvariant()
+    function Get-DelegatedCommandPath {
+        param([Parameter(Mandatory = $true)][string]$Path)
+
+        try {
+            $content = Get-Content -LiteralPath $Path -Raw -ErrorAction Stop
+        }
+        catch {
+            return $null
+        }
+
+        $targetLeaf = [System.IO.Path]::GetFileName($Path)
+        $delegatedPathMatches = [regex]::Matches($content, "(?im)['""](?<path>[A-Z]:\\[^'""]+?\.(?:ps1|cmd|bat|exe))['""]")
+        $candidates = @()
+
+        foreach ($match in $delegatedPathMatches) {
+            $candidatePath = $match.Groups["path"].Value
+            if (-not $candidatePath -or $candidatePath -eq $Path) {
+                continue
+            }
+            # 2026-10-21：候选路径可能取自二进制内容的乱码，含非法字符时 Test-Path 会抛终止错误
+            # （ErrorActionPreference=Stop 下直接炸掉整个脚本，之前每晚都崩在 claude.exe 上）。
+            # 包一层 try/catch，坏候选当不存在。
+            $candidateExists = $false
+            try {
+                $candidateExists = Test-Path -LiteralPath $candidatePath
+            }
+            catch {
+                $candidateExists = $false
+            }
+            if ($candidateExists) {
+                $candidates += $candidatePath
+            }
+        }
+
+        foreach ($candidatePath in $candidates) {
+            if ([System.IO.Path]::GetFileName($candidatePath).Equals($targetLeaf, [System.StringComparison]::OrdinalIgnoreCase)) {
+                return $candidatePath
+            }
+        }
+
+        if ($candidates.Count -gt 0) {
+            return $candidates[0]
+        }
+
+        return $null
+    }
+
+    $effectivePath = $CommandPath
+    $delegatedPath = Get-DelegatedCommandPath -Path $CommandPath
+    if ($delegatedPath) {
+        $effectivePath = $delegatedPath
+    }
+
+    $normalizedPath = [System.IO.Path]::GetFullPath($effectivePath).ToLowerInvariant()
     $npmGlobal = [System.IO.Path]::GetFullPath((Join-Path $env:APPDATA "npm")).ToLowerInvariant()
 
     if ($normalizedPath.StartsWith($npmGlobal)) {
@@ -184,6 +237,13 @@ function Find-SelfUpdateCommand {
     return $null
 }
 
+function Test-AllowsSelfUpdate {
+    param([Parameter(Mandatory = $true)][string]$CliName)
+
+    $blockedCliNames = @("claude")
+    return $blockedCliNames -notcontains $CliName.ToLowerInvariant()
+}
+
 function Get-VersionString {
     param([Parameter(Mandatory = $true)][string]$CliName)
 
@@ -232,15 +292,28 @@ function Stop-RunningCliProcesses {
     $matched = @()
 
     try {
-        $processes = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object {
+        $allProcesses = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue)
+        $processes = @($allProcesses | Where-Object {
             Test-ProcessMatchesCli -Process $_ -CliName $CliName
         })
     }
     catch {
+        $allProcesses = @()
         $processes = @()
     }
 
+    # 2026-10-21：父进程是 cc-connect.exe 的子进程是聊天桥养的常驻会话进程，
+    # 强杀会让会话异常退出并向群里推送错误（exit 0xffffffff + 遗留 stderr 被当死因转发）。更新前跳过。
+    $parentNames = @{}
+    foreach ($p in $allProcesses) { $parentNames[[uint32]$p.ProcessId] = $p.Name }
+
     foreach ($process in $processes) {
+        $parentName = $parentNames[[uint32]$process.ParentProcessId]
+        if ($parentName -and $parentName -ieq "cc-connect.exe") {
+            Write-Host ("Skipping cc-connect session process: PID " + $process.ProcessId + " (" + $process.Name + ")") -ForegroundColor DarkYellow
+            continue
+        }
+
         try {
             Stop-Process -Id $process.ProcessId -Force -ErrorAction Stop
             $matched += [PSCustomObject]@{
@@ -332,9 +405,11 @@ function Invoke-AgentCliUpdates {
     Start-Transcript -Path $logPath -Force | Out-Null
 
     try {
+        # 2026-10-21：移除 claude。它已是原生安装（.local\bin\claude.exe，自带 autoUpdatesChannel 自更新），
+        # 这里既无法可靠推断包名（会从二进制里抠出乱码导致 Test-Path 抛错），更新前的强杀还会把
+        # cc-connect 养的常驻会话进程杀掉，导致飞书群每晚收到 [claude-code:unrecognized_model] 假错误推送。
         $candidatePackages = @(
             @{ Cli = "gemini"; Package = $null },
-            @{ Cli = "claude"; Package = $null },
             @{ Cli = "codex"; Package = "@openai/codex" },
             @{ Cli = "kilo"; Package = $null },
             @{ Cli = "opencode"; Package = $null }
@@ -399,7 +474,7 @@ function Invoke-AgentCliUpdates {
                 }
             }
 
-            if ($selfUpdateArgs) {
+            if ($selfUpdateArgs -and (Test-AllowsSelfUpdate -CliName $cliName)) {
                 $strategy = "self-update"
                 $runner = $cliName
                 $args = $selfUpdateArgs
